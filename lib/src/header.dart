@@ -78,6 +78,7 @@ class _CalendarHeader extends StatelessWidget {
               decoration: _headerStyle.decoration,
               height: _kDayPickerRowHeight,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Expanded(
                     child: _headerStyle.centerHeaderTitle
@@ -89,7 +90,7 @@ class _CalendarHeader extends StatelessWidget {
                   InkWell(
                     onTap: _changeToToday,
                     child: Text(
-                      _language == Language.nepali ? "आज" : 'Today',
+                      _language == Language.nepali ? "Today" : 'Today',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                       ),
@@ -138,41 +139,41 @@ class _CalendarHeader extends StatelessWidget {
       child: ExcludeSemantics(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    _headerStyle.titleTextBuilder != null
-                        ? _headerStyle.titleTextBuilder(
-                            date,
-                            _language,
-                          )
-                        : '${formattedMonth(date.month, _language)} - ${_language == Language.english ? date.year : NepaliUnicode.convert('${date.year}')}',
-                    style: _headerStyle.titleTextStyle,
-                    textAlign: _headerStyle.centerHeaderTitle
-                        ? TextAlign.center
-                        : TextAlign.start,
-                  ),
-                  Icon(Icons.arrow_drop_down)
-                ],
-              ),
-              Text(
-                _headerStyle.titleTextBuilder != null
-                    ? _headerStyle.titleTextBuilder(
-                        date,
-                        _language,
-                      )
-                    : "${getFormattedEnglishMonth(date.toDateTime().month)}/${getFormattedEnglishMonth(date.toDateTime().month + 1)} - ${date.toDateTime().year}",
-                style: _headerStyle.titleTextStyle
-                    .copyWith(fontWeight: FontWeight.normal, fontSize: 14),
-                textAlign: _headerStyle.centerHeaderTitle
-                    ? TextAlign.center
-                    : TextAlign.start,
-              ),
-            ],
-          ),
+          // child: Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     Row(
+          //       children: [
+          //         Text(
+          //           _headerStyle.titleTextBuilder != null
+          //               ? _headerStyle.titleTextBuilder(
+          //                   date,
+          //                   _language,
+          //                 )
+          //               : '${formattedMonth(date.month, _language)} - ${_language == Language.english ? date.year : NepaliUnicode.convert('${date.year}')}',
+          //           style: _headerStyle.titleTextStyle,
+          //           textAlign: _headerStyle.centerHeaderTitle
+          //               ? TextAlign.center
+          //               : TextAlign.start,
+          //         ),
+          //         Icon(Icons.arrow_drop_down)
+          //       ],
+          //     ),
+          //     Text(
+          //       _headerStyle.titleTextBuilder != null
+          //           ? _headerStyle.titleTextBuilder(
+          //               date,
+          //               _language,
+          //             )
+          //           : "${getFormattedEnglishMonth(date.toDateTime().month)}/${getFormattedEnglishMonth(date.toDateTime().month + 1)} - ${date.toDateTime().year}",
+          //       style: _headerStyle.titleTextStyle
+          //           .copyWith(fontWeight: FontWeight.normal, fontSize: 14),
+          //       textAlign: _headerStyle.centerHeaderTitle
+          //           ? TextAlign.center
+          //           : TextAlign.start,
+          //     ),
+          //   ],
+          // ),
         ),
       ),
     );

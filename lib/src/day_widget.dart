@@ -73,6 +73,7 @@ class _DayWidget extends StatelessWidget {
         ? builder(isToday, isSelected, isDisabled, day, label, text,
             calendarStyle, isWeekend)
         : AnimatedContainer(
+
             duration: Duration(milliseconds: 2000),
             decoration: _buildCellDecoration(),
             child: Center(

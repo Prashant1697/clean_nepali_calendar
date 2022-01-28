@@ -2,7 +2,7 @@ part of clean_nepali_calendar;
 
 typedef Widget HeaderDayBuilder(String headerName, int dayNumber);
 
-const double _kDayPickerRowHeight = 40.0;
+const double _kDayPickerRowHeight = 45.0;
 
 class _DayPickerGridDelegate extends SliverGridDelegate {
   const _DayPickerGridDelegate();
@@ -86,7 +86,7 @@ class _DaysView extends StatelessWidget {
         {
           headers = (language == Language.english)
               ? dayHeaderFullNameEnglish
-              : dayHeaderFullNameNepali;
+              : dayHeaderHalfNameEnglish;
           break;
         }
       case HeaderDayType.halfName:

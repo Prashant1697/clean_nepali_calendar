@@ -131,25 +131,27 @@ class HomePage extends StatelessWidget {
       duration: Duration(milliseconds: 2000),
       decoration: _buildCellDecoration(),
       child: Center(
-        child: Column(
-          children: [
-            Text(text,
-                style: TextStyle(
-                    fontSize: 20, color: isWeekend ? Colors.red : null)),
-
-            // to show events
-            Align(
-                alignment: Alignment.bottomCenter,
-                child: CircleAvatar(
-                  radius: 1,
-                )),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Text(nepaliDate.toDateTime().day.toString(),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(text,
                   style: TextStyle(
-                      fontSize: 8, color: isWeekend ? Colors.red : null)),
-            ),
-          ],
+                      fontSize: 20, color: isWeekend ? Colors.red : null)),
+
+              // to show events
+              Align(
+                  alignment: Alignment.bottomCenter,
+                  child: CircleAvatar(
+                    radius: 1,
+                  )),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Text(nepaliDate.toDateTime().day.toString(),
+                    style: TextStyle(
+                        fontSize: 8, color: isWeekend ? Colors.red : null)),
+              ),
+            ],
+          ),
         ),
       ),
     );
