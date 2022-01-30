@@ -58,6 +58,7 @@ class _DayWidget extends StatelessWidget {
     }
 
     TextStyle _buildCellTextStyle() {
+      print('selected ${_DaysView}');
       if (isDisabled) {
         return calendarStyle.unavailableStyle;
       } else if (isSelected && calendarStyle.highlightSelected) {

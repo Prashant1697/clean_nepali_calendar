@@ -44,7 +44,7 @@ class HeaderStyle {
   const HeaderStyle({
     this.centerHeaderTitle = true,
     this.titleTextBuilder,
-    this.titleTextStyle = const TextStyle(fontSize: 17.0),
+    this.titleTextStyle = const TextStyle(fontSize: 14.0),
     this.leftChevronPadding = const EdgeInsets.all(8.0),
     this.rightChevronPadding = const EdgeInsets.all(8.0),
     this.leftChevronIcon = const Icon(Icons.chevron_left, color: Colors.black),

@@ -77,9 +77,15 @@ class _CalendarHeader extends StatelessWidget {
           : Padding(
             padding: const EdgeInsets.only(left: 14,right: 14,top: 10),
             child: Container(
-                height: 40,
-
+              decoration: BoxDecoration(
                 color: Color(0xFF036C99),
+
+
+                borderRadius: BorderRadius.circular(5),
+
+              ),
+                height: 35,
+
                 //decoration: _headerStyle.decoration,
 
                // height: _kDayPickerRowHeight,
@@ -107,7 +113,7 @@ class _CalendarHeader extends StatelessWidget {
                     // Text('555',style: TextStyle(fontSize: 18,color: Colors.white),),
                     // Text('77',style: TextStyle(fontSize: 18,color: Colors.white),),
                       Padding(
-                        padding: const EdgeInsets.only(right: 110.0),
+                        padding: const EdgeInsets.only(right: 100.0),
                         child: Text(
                           _headerStyle.titleTextBuilder != null
                               ? _headerStyle.titleTextBuilder(
@@ -122,6 +128,24 @@ class _CalendarHeader extends StatelessWidget {
                               : TextAlign.start,
                         ),
                       ),
+                    //checking data text
+                    //here finding date current date
+
+                    // Text(
+                    //   _headerStyle.titleTextBuilder != null
+                    //       ? _headerStyle.titleTextBuilder(
+                    //     date,
+                    //     _language,
+                    //   )
+                    //       : '${formattedMonth(date.month, _language)}',
+                    //   //here date
+                    //    //
+                    //   // style: _headerStyle.titleTextStyle,
+                    //   style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 14),
+                    //   textAlign: _headerStyle.centerHeaderTitle
+                    //       ? TextAlign.center
+                    //       : TextAlign.start,
+                    // ),
                     // SizedBox(
                     //   width: 120,
                     // ),
@@ -141,7 +165,7 @@ class _CalendarHeader extends StatelessWidget {
                                 )
                           //jab/feb 2022
                               : "${getFormattedEnglishMonth(date.toDateTime().month)}/${getFormattedEnglishMonth(date.toDateTime().month + 1)} " ,style: TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight.w600),) ,
-                        Text(     " ${date.toDateTime().year}",
+                        Text( " ${date.toDateTime().year}",
                        style: TextStyle(fontSize: 12,color: Colors.white,fontWeight: FontWeight.w600),)
 
                       ],

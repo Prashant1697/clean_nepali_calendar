@@ -1,6 +1,5 @@
 import 'package:clean_nepali_calendar/clean_nepali_calendar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,7 +25,12 @@ class HomePage extends StatelessWidget {
     final NepaliDateTime first = NepaliDateTime(2075, 5);
     final NepaliDateTime last = NepaliDateTime(2079, 3);
     return Scaffold(
+
+      backgroundColor:Color(0xfff2f3f7),
+
+
       appBar: AppBar(
+
         title: Text('Clean Nepali Calendar'),
       ),
       body: SingleChildScrollView(
@@ -61,7 +65,7 @@ class HomePage extends StatelessWidget {
                 selectedColor: Colors.deepOrange,
                 dayStyle: TextStyle(fontWeight: FontWeight.bold),
                 todayStyle: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 14.0,
                 ),
                 todayColor: Colors.orange.shade400,
                 // highlightSelected: true,
@@ -102,8 +106,9 @@ class HomePage extends StatelessWidget {
         return BoxDecoration(
             // shape: BoxShape.circle,
             borderRadius: BorderRadius.circular(5),
-            color: Colors.blue,
-            border: Border.all(color: calendarStyle.selectedColor));
+            color: Colors.teal.shade200,
+          //  border: Border.all(color: calendarStyle.selectedColor)
+        );
       }
       if (isSelected) {
         return BoxDecoration(
@@ -115,7 +120,7 @@ class HomePage extends StatelessWidget {
           // shape: BoxShape.circle,
           borderRadius: BorderRadius.circular(5),
           border: Border.all(color: Colors.transparent),
-          color: Colors.blue,
+          //color: Colors.blue,
         );
       } else {
         return BoxDecoration(
@@ -135,8 +140,8 @@ class HomePage extends StatelessWidget {
           child: Column(
             children: [
               Text(text,
-                  style: TextStyle(
-                      fontSize: 20, color: isWeekend ? Colors.red : null)),
+                  style: TextStyle(fontWeight: FontWeight.w500,fontStyle: FontStyle.normal,
+                      fontSize: 15, color: isWeekend ? Colors.red : null)),
 
               // to show events
               Align(
@@ -150,6 +155,7 @@ class HomePage extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 8, color: isWeekend ? Colors.red : null)),
               ),
+
             ],
           ),
         ),
