@@ -74,62 +74,177 @@ class _CalendarHeader extends StatelessWidget {
       child: (_headerBuilder != null)
           ? _headerBuilder(_headerStyle.decoration, _kDayPickerRowHeight,
               _handleNextMonth, _handlePreviousMonth, date)
-          : Container(
-              decoration: _headerStyle.decoration,
-              height: _kDayPickerRowHeight,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Expanded(
-                    child: _headerStyle.centerHeaderTitle
-                        ? Center(
-                            child: _buildTitle(),
-                          )
-                        : _buildTitle(),
-                  ),
-                  InkWell(
-                    onTap: _changeToToday,
-                    child: Text(
-                      _language == Language.nepali ? "Today" : 'Today',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+          : Padding(
+            padding: const EdgeInsets.only(left: 14,right: 14,top: 10),
+            child: Container(
+                height: 40,
+
+                color: Color(0xFF036C99),
+                //decoration: _headerStyle.decoration,
+
+               // height: _kDayPickerRowHeight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Semantics(
+                      sortKey: _MonthPickerSortKey.previousMonth,
+                      child: FadeTransition(
+                        opacity: _chevronOpacityAnimation,
+                        child: IconButton(
+                          color: Colors.white,
+
+                          padding: _headerStyle.leftChevronPadding,
+                          icon: Icon(Icons.arrow_back_ios,size: 15,),
+                          tooltip: _isDisplayingFirstMonth
+                              ? null
+                              : 'Previous month ${formattedMonth(_previousMonthDate.month, Language.english)} ${_previousMonthDate.year}',
+                          onPressed: _isDisplayingFirstMonth
+                              ? null
+                              : _handlePreviousMonth,
+                        ),
                       ),
                     ),
-                  ),
-                  Semantics(
-                    sortKey: _MonthPickerSortKey.previousMonth,
-                    child: FadeTransition(
-                      opacity: _chevronOpacityAnimation,
-                      child: IconButton(
-                        padding: _headerStyle.leftChevronPadding,
-                        icon: _headerStyle.leftChevronIcon,
-                        tooltip: _isDisplayingFirstMonth
-                            ? null
-                            : 'Previous month ${formattedMonth(_previousMonthDate.month, Language.english)} ${_previousMonthDate.year}',
-                        onPressed: _isDisplayingFirstMonth
-                            ? null
-                            : _handlePreviousMonth,
+                    // Text('555',style: TextStyle(fontSize: 18,color: Colors.white),),
+                    // Text('77',style: TextStyle(fontSize: 18,color: Colors.white),),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 110.0),
+                        child: Text(
+                          _headerStyle.titleTextBuilder != null
+                              ? _headerStyle.titleTextBuilder(
+                                  date,
+                                  _language,
+                                )
+                              : '${formattedMonth(date.month, _language)} ${_language == Language.english ? date.year : NepaliUnicode.convert('${date.year}')}',
+                         // style: _headerStyle.titleTextStyle,
+                          style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white,fontSize: 14),
+                          textAlign: _headerStyle.centerHeaderTitle
+                              ? TextAlign.center
+                              : TextAlign.start,
+                        ),
+                      ),
+                    // SizedBox(
+                    //   width: 120,
+                    // ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        // SizedBox(
+                        //   height: 5,
+                        // ),
+                            Text(
+                          //writing english date here
+                          _headerStyle.titleTextBuilder != null
+                              ? _headerStyle.titleTextBuilder(
+                                  date,
+                                  _language,
+                                )
+                          //jab/feb 2022
+                              : "${getFormattedEnglishMonth(date.toDateTime().month)}/${getFormattedEnglishMonth(date.toDateTime().month + 1)} " ,style: TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight.w600),) ,
+                        Text(     " ${date.toDateTime().year}",
+                       style: TextStyle(fontSize: 12,color: Colors.white,fontWeight: FontWeight.w600),)
+
+                      ],
+                    ),
+
+                //i will get it right after
+                //     Text(
+                //   //writing english date here
+                //   _headerStyle.titleTextBuilder != null
+                //       ? _headerStyle.titleTextBuilder(
+                //           date,
+                //           _language,
+                //         )
+                //   //jab/feb 2022
+                //       : "${getFormattedEnglishMonth(date.toDateTime().month)}/${getFormattedEnglishMonth(date.toDateTime().month + 1)} "
+                //       "-"
+                //       " ${date.toDateTime().year}",
+                //   style: _headerStyle.titleTextStyle
+                //       .copyWith(fontWeight: FontWeight.normal, fontSize: 14,color: Colors.white),
+                //   textAlign: _headerStyle.centerHeaderTitle
+                //       ? TextAlign.center
+                //       : TextAlign.start,
+                // ),
+
+
+
+                    Semantics(
+                      sortKey: _MonthPickerSortKey.nextMonth,
+                      child: FadeTransition(
+                        opacity: _chevronOpacityAnimation,
+                        child: IconButton(
+                          color: Colors.white,
+                          padding: _headerStyle.rightChevronPadding,
+                          icon: Icon(Icons.arrow_forward_ios,size: 15,),
+                          tooltip: _isDisplayingLastMonth
+                              ? null
+                              : 'Next month ${formattedMonth(_nextMonthDate.month, Language.english)} ${_nextMonthDate.year}',
+                          onPressed:
+                              _isDisplayingLastMonth ? null : _handleNextMonth,
+                        ),
                       ),
                     ),
-                  ),
-                  Semantics(
-                    sortKey: _MonthPickerSortKey.nextMonth,
-                    child: FadeTransition(
-                      opacity: _chevronOpacityAnimation,
-                      child: IconButton(
-                        padding: _headerStyle.rightChevronPadding,
-                        icon: _headerStyle.rightChevronIcon,
-                        tooltip: _isDisplayingLastMonth
-                            ? null
-                            : 'Next month ${formattedMonth(_nextMonthDate.month, Language.english)} ${_nextMonthDate.year}',
-                        onPressed:
-                            _isDisplayingLastMonth ? null : _handleNextMonth,
-                      ),
-                    ),
-                  ),
-                ],
+
+                    // Icon(Icons.eighteen_mp,color: Colors.white,),
+                    // Icon(Icons.eighteen_mp,color: Colors.white,),
+
+                    //  Text('99999'),
+
+                    //tala ko date and magh feb call method from here
+                    // Expanded(
+                    //   child: _headerStyle.centerHeaderTitle
+                    //       ? Center(
+                    //           child: _buildTitle(),
+                    //         )
+                    //       : _buildTitle(),
+                    // ),
+
+
+
+                    // InkWell(
+                    //   onTap: _changeToToday,
+                    //   child: Text(
+                    //     _language == Language.english ? "Today" : 'Today',
+                    //     style: TextStyle(
+                    //       fontWeight: FontWeight.bold,
+                    //     ),
+                    //   ),
+                    // ),
+                    // Semantics(
+                    //   sortKey: _MonthPickerSortKey.previousMonth,
+                    //   child: FadeTransition(
+                    //     opacity: _chevronOpacityAnimation,
+                    //     child: IconButton(
+                    //       padding: _headerStyle.leftChevronPadding,
+                    //       icon: _headerStyle.leftChevronIcon,
+                    //       tooltip: _isDisplayingFirstMonth
+                    //           ? null
+                    //           : 'Previous month ${formattedMonth(_previousMonthDate.month, Language.english)} ${_previousMonthDate.year}',
+                    //       onPressed: _isDisplayingFirstMonth
+                    //           ? null
+                    //           : _handlePreviousMonth,
+                    //     ),
+                    //   ),
+                    // ),
+                    // Semantics(
+                    //   sortKey: _MonthPickerSortKey.nextMonth,
+                    //   child: FadeTransition(
+                    //     opacity: _chevronOpacityAnimation,
+                    //     child: IconButton(
+                    //       padding: _headerStyle.rightChevronPadding,
+                    //       icon: _headerStyle.rightChevronIcon,
+                    //       tooltip: _isDisplayingLastMonth
+                    //           ? null
+                    //           : 'Next month ${formattedMonth(_nextMonthDate.month, Language.english)} ${_nextMonthDate.year}',
+                    //       onPressed:
+                    //           _isDisplayingLastMonth ? null : _handleNextMonth,
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
+                ),
               ),
-            ),
+          ),
     );
   }
 
@@ -139,11 +254,13 @@ class _CalendarHeader extends StatelessWidget {
       child: ExcludeSemantics(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
+          //MAGJ AND DATE START FROM HERE
           // child: Column(
           //   crossAxisAlignment: CrossAxisAlignment.start,
           //   children: [
           //     Row(
           //       children: [
+          //       //writing magh date 2078 here
           //         Text(
           //           _headerStyle.titleTextBuilder != null
           //               ? _headerStyle.titleTextBuilder(
@@ -156,16 +273,19 @@ class _CalendarHeader extends StatelessWidget {
           //               ? TextAlign.center
           //               : TextAlign.start,
           //         ),
-          //         Icon(Icons.arrow_drop_down)
+          //        // Icon(Icons.arrow_drop_down)
           //       ],
           //     ),
           //     Text(
+          //       //writing english date here
           //       _headerStyle.titleTextBuilder != null
           //           ? _headerStyle.titleTextBuilder(
           //               date,
           //               _language,
           //             )
-          //           : "${getFormattedEnglishMonth(date.toDateTime().month)}/${getFormattedEnglishMonth(date.toDateTime().month + 1)} - ${date.toDateTime().year}",
+          //       //jab/feb 2022
+          //           : "${getFormattedEnglishMonth(date.toDateTime().month)}/${getFormattedEnglishMonth(date.toDateTime().month + 1)} -"
+          //           " ${date.toDateTime().year}",
           //       style: _headerStyle.titleTextStyle
           //           .copyWith(fontWeight: FontWeight.normal, fontSize: 14),
           //       textAlign: _headerStyle.centerHeaderTitle

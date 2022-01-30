@@ -151,7 +151,9 @@ class _DaysView extends StatelessWidget {
       final day = i - firstDayOffset + 1;
       if (day > daysInMonth) break;
       if (day < 1) {
-        labels.add(Container());
+        labels.add(Container(
+
+        ));
       } else {
         final dayToBuild = NepaliDateTime(year, month, day);
         final disabled = dayToBuild.isAfter(lastDate) ||
@@ -185,16 +187,16 @@ class _DaysView extends StatelessWidget {
           builder: dateCellBuilder,
         );
 
-        if (!disabled) {
-          dayWidget = GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            onTap: () {
-              onChanged(dayToBuild);
-            },
-            child: dayWidget,
-            dragStartBehavior: dragStartBehavior,
-          );
-        }
+        // if (!disabled) {
+        //   dayWidget = GestureDetector(
+        //     behavior: HitTestBehavior.opaque,
+        //     onTap: () {
+        //       onChanged(dayToBuild);
+        //     },
+        //     child: dayWidget,
+        //     dragStartBehavior: dragStartBehavior,
+        //   );
+        // }
         labels.add(dayWidget);
       }
 
@@ -203,8 +205,10 @@ class _DaysView extends StatelessWidget {
 
     return Column(
       children: <Widget>[
+
         Flexible(
           child: GridView.custom(
+            scrollDirection: Axis.vertical,
             physics: NeverScrollableScrollPhysics(),
             gridDelegate: _kDayPickerGridDelegate,
             childrenDelegate:
