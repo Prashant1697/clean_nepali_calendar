@@ -250,24 +250,21 @@ class _MonthViewState extends State<_MonthView>
                         _chevronOpacityController.reverse();
                         return false;
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15.0,right: 15),
-                        child: Container(
+                      child: Container(
 
 
 
 
-                          color: Colors.white,
-                          child: PageView.builder(
-                            dragStartBehavior: widget.dragStartBehavior,
-                            key: ValueKey<NepaliDateTime>(widget.selectedDate),
-                            controller: _dayPickerController,
-                            scrollDirection: Axis.horizontal,
-                            itemCount:
-                                _monthDelta(widget.firstDate, widget.lastDate) + 1,
-                            itemBuilder: _buildItems,
-                            onPageChanged: _handleMonthPageChanged,
-                          ),
+                        color: Colors.white,
+                        child: PageView.builder(
+                          dragStartBehavior: widget.dragStartBehavior,
+                          key: ValueKey<NepaliDateTime>(widget.selectedDate),
+                          controller: _dayPickerController,
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              _monthDelta(widget.firstDate, widget.lastDate) + 1,
+                          itemBuilder: _buildItems,
+                          onPageChanged: _handleMonthPageChanged,
                         ),
                       ),
                     ),
