@@ -186,7 +186,7 @@ class _MonthViewState extends State<_MonthView>
           textDirection);
       _dayPickerController.previousPage(
           duration: _kMonthScrollDuration, curve: Curves.ease);
-      widget.onHeaderTapped(_nextMonthDate);
+      widget.onHeaderTapped(_previousMonthDate);
 
     }
   }
