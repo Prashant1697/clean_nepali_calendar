@@ -175,6 +175,7 @@ class _MonthViewState extends State<_MonthView>
           textDirection);
       _dayPickerController.nextPage(
           duration: _kMonthScrollDuration, curve: Curves.ease);
+      widget.onHeaderTapped(_nextMonthDate);
     }
   }
 
@@ -185,6 +186,8 @@ class _MonthViewState extends State<_MonthView>
           textDirection);
       _dayPickerController.previousPage(
           duration: _kMonthScrollDuration, curve: Curves.ease);
+      widget.onHeaderTapped(_nextMonthDate);
+
     }
   }
 
